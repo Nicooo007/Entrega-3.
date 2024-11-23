@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adharas Beauty</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Cabecera con banner y navegación superior -->
+    <header>
+        <div class="banner">
+            <img src="./img/TINTA .jpeg" alt="Adharas Beauty Banner" class="banner-img">
+            <div class="header-content">
+                <div class="brand-logo">
+                    <h1>Adharas Beauty</h1>
+                </div>
+                <div class="top-bar">
+                    <input type="text" id="search" placeholder="Buscar productos..." onkeyup="filterProducts()">
+                    <div class="user-actions">
+                        <a href="login.html" class="login-btn" id="loginBtn">Login</a>
+                        <a href="user-profile.html" class="profile-btn" id="profileBtn">Mi Perfil</a>
+                        <a href="cart.html" class="cart-btn">🛒 Carrito</a>
+                        <a href="favorites.html" class="favorites-btn">❤️ Favoritos</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenido principal -->
+    <main>
+        <section class="product-list">
+            <!-- Aquí se generarán dinámicamente los productos -->
+        </section>
+    </main>
+
+    <!-- Pie de página -->
+    <footer>
+        <p>© 2024 Adharas Beauty</p>
+    </footer>
+
+    <!-- Modal para detalles del producto -->
+    <div id="product-details" class="modal hidden">
+        <div class="modal-content">
+            <!-- Botón para cerrar el modal -->
+            <button id="close-detail" class="close-btn" onclick="closeProductDetails()">×</button>
+            
+            <!-- Información dinámica del producto -->
+            <h2 id="detail-title"></h2>
+            <p class="price" id="detail-price"></p>
+            <p id="detail-manufacturer"></p>
+            <p id="detail-ordercode"></p>
+            
+            <!-- Opiniones del producto -->
+            <div id="detail-reviews"></div>
+            
+            <!-- Imágenes del producto -->
+            <div id="detail-images"></div>
+
+            <!-- Botón para regresar a la tienda -->
+            <a href="index2.html" class="back-home-btn">Volver a la tienda</a>
+        </div>
+    </div>
+
+
+    <!-- Barra de navegación de categorías -->
+    <nav class="category-bar">
+        <ul>
+            <li><a href="category.html">Skincare</a></li>
+            <li><a href="category.html">Makeup</a></li>
+            <li><a href="category.html">Fragrance</a></li>
+            <li><a href="category.html">Haircare</a></li>
+        </ul>
+    </nav>
+
+    <!-- Carrusel publicitario -->
+    <section class="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="./img/Screenshot 2024-10-20 144903.png" alt="Banner 1">
+                <div class="caption">Descubre nuestra nueva colección</div>
+            </div>
+            <div class="carousel-item">
+                <img src="./img/plantilla-promocion-redes-sociales-artista-maquillaje-textura-dibujada-mano_23-2149383185.jpg.avif" alt="Banner 2">
+                <div class="caption">Ofertas increíbles en maquillaje</div>
+            </div>
+            <div class="carousel-item">
+                <img src="./img/Carrusel-Too-Faced-La-belle-carousel-empaque.jpg" alt="Banner 3">
+                <div class="caption">Cuida tu piel con nuestros productos</div>
+            </div>
+            <div class="carousel-item">
+                <img src="./img/0_bfec0177-cffd-437f-b6f5-23b4a4c732b2.png.webp" alt="Banner 4">
+                <div class="caption">Los mejores productos para ti</div>
+            </div>
+            <div class="carousel-item">
+                <img src="./img/cuidado-facial.jpg" alt="Banner 5">
+                <div class="caption">Cuida tu piel con nuestros productos todos los días</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contenedor de productos -->
+    <section id="product-container">
+        <!-- Los productos se agregarán dinámicamente aquí desde JavaScript -->
+        <div class="product-item" onclick="showProductDetails(1)">
+            <h3>Brochas</h3>
+            <p>Precio: $10.99</p>
+        </div>
+        <div class="product-item" onclick="showProductDetails(2)">
+            <h3>Rúbor</h3>
+            <p>Precio: $12.49</p>
+        </div>
+        <div class="product-item" onclick="showProductDetails(3)">
+            <h3>Delineador</h3>
+            <p>Precio: $8.00</p>
+        </div>
+    </section>
+
+    <!-- Detalles del producto (dentro de la misma página) -->
+    <section id="product-detail" style="display: none;">
+        <h2 id="product-name">Nombre del Producto</h2>
+        <img id="product-image" src="" alt="Imagen del Producto" />
+        <p id="product-description">Descripción del Producto</p>
+        <p id="product-price">$0.00</p>
+        <button id="add-to-cart">Añadir al carrito</button>
+        <button class="favorite-btn" onclick="toggleFavorite('Delineador')">⭐ Agregar a Favoritos</button>
+    </section>
+
+    <!-- Formulario de Contact Manager -->
+    <main>
+        <section class="form-section">
+            <h2>Contact Manager</h2>
+            <form id="contactForm">
+                <label for="name">Nombre:</label>
+                <input type="text" id="name" name="name" required>
+                
+                <label for="phone">Teléfono:</label>
+                <input type="text" id="phone" name="phone" required>
+                
+                <label for="email">Correo electrónico:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="address">Dirección:</label>
+                <input type="text" id="address" name="address">
+                
+                <button type="submit">Guardar Contacto</button>
+            </form>
+        </section>
+
+        <section class="contacts-section">
+            <h2>Tus Contactos</h2>
+            <div id="contactList">
+                <p>No hay contactos disponibles. ¡Agrega uno arriba!</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer con enlaces adicionales -->
+    <footer>
+        <section class="membership">
+            <h3>¿Quieres convertirte en miembro?</h3>
+            <p>Únete a la comunidad de Adharas Beauty y desbloquea beneficios exclusivos!</p>
+            <a href="signup.html" class="btn">Conviértete en miembro ahora</a>
+        </section>
+
+        <section class="footer-links">
+            <a href="contact.html">Contáctanos</a> | 
+            <a href="terms.html">Términos y Condiciones</a> | 
+            <a href="privacy.html">Política de Privacidad</a> |
+            <a href="sobrenosotros.html">¿Quiénes somos?</a>
+        </section>
+    </footer>
+
+    <!-- Scripts -->
+   <!-- Agregar aquí el script para el carrusel -->
+    <script src="productos.js"></script>
+    <script src="s.js"></script>
+    <script src="viewdetails.js"></script>
+    <script src="globaldata.js"></script>
+    <script src="datas.js"></script>
+    <script src="data.js"></script>
+    <script src="index.js"></script>
+    <script src="carousel.js"></script> <!-- Script para el carrusel 
+</body>
+</html>

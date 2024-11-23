@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Producto</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <a href="index2.html" class="back-home-btn">← Volver a la tienda</a>
+    </header>
+
+    <main class="product-detail">
+        <div class="product-container">
+            <!-- Detalles se cargarán dinámicamente -->
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2024 Adharas Beauty</p>
+    </footer>
+
+    <!-- Enlace al archivo JavaScript externo -->
+    <script src="index.js"></script>
+
+    <!-- Código JavaScript inline -->
+    <script>
+        // Obtener el producto desde el almacenamiento local
+        const producto = JSON.parse(localStorage.getItem("productoDetalle"));
+        const productContainer = document.querySelector(".product-container");
+
+        if (producto) {
+            productContainer.innerHTML = `
+                <div class="product-images">
+                    <img src="${producto.imagen}" alt="${producto.nombre}">
+                </div>
+                <div class="product-info">
+                    <h1>${producto.nombre}</h1>
+                    <p class="price">$${producto.precio.toLocaleString()}</p>
+                    <button class="add-to-favorites">❤️ Añadir a favoritos</button>
+                    <section class="product-details">
+                        <h2>Detalles del producto</h2>
+                        <ul>
+                            ${producto.detalles.map(detalle => `<li>${detalle}</li>`).join("")}
+                        </ul>
+                    </section>
+                </div>
+            `;
+        }
+
+        // Agregar a favoritos (puedes implementar funcionalidad aquí)
+        document.addEventListener("click", (event) => {
+            if (event.target.classList.contains("add-to-favorites")) {
+                alert("Producto añadido a favoritos!");
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Producto</title>
+</head>
+<body>
+    <h1 id="detail-title"></h1>
+    <p id="detail-price"></p>
+    <p id="detail-manufacturer"></p>
+    <p id="detail-ordercode"></p>
+    <div id="detail-reviews"></div>
+    <div id="detail-images"></div>
+    <button class="favorite-btn" onclick="toggleFavorite('Delineador')">⭐ Agregar a Favoritos</button>
+    </div>
+
+    <button id="favorito-btn"></button>
+    
+    <a href="index2.html">Volver a la tienda</a>
+
+    <script src="productos.js"></script>
+    <script>
+        // Obtener el id del producto desde la URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = parseInt(urlParams.get('id'));
+
+        // Buscar el producto
+        const product = getProductoById(productId);
+
+        if (product) {
+            document.getElementById("detail-title").innerText = product.name;
+            document.getElementById("detail-price").innerText = `Precio: $${product.price.toFixed(2)}`;
+            document.getElementById("detail-manufacturer").innerText = "Fabricante: Desconocido";  // Modificar si tienes este dato
+            document.getElementById("detail-ordercode").innerText = "Código: 0000";  // Modificar si tienes este dato
+            document.getElementById("detail-reviews").innerHTML = `Reseñas: ${generateStars(product.stars)} (${product.reviews} reseñas)`;
+
+            const detailImages = document.getElementById("detail-images");
+            detailImages.innerHTML = `<img src="${product.image}" alt="${product.name}" />`;
+
+            // Actualizar el botón de favoritos
+            const favoritoBtn = document.getElementById("favorito-btn");
+            const esFavorito = getFavoritos().includes(product.id);
+            favoritoBtn.innerText = esFavorito ? "Eliminar de favoritos" : "Agregar a favoritos";
+            favoritoBtn.addEventListener('click', function() {
+                toggleFavorito(product.id);
+                favoritoBtn.innerText = getFavoritos().includes(product.id) ? "Eliminar de favoritos" : "Agregar a favoritos";
+            });
+        } else {
+            document.body.innerHTML = "<h2>Producto no encontrado</h2>";
+        }
+
+        // Función para generar las estrellas de reseña
+        function generateStars(stars) {
+            return "★".repeat(stars) + "☆".repeat(5 - stars);
+        }
+    </script>
+</body>
+</html>

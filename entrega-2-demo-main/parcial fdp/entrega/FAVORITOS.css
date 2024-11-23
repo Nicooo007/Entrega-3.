@@ -1,0 +1,58 @@
+/* Estilo para la barra superior */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #f4f4f4;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .top-bar input#search {
+    padding: 8px;
+    font-size: 1rem;
+    width: 100%;
+  }
+  
+  /* Estilo para la página de favoritos */
+  .favorites-list {
+    margin: 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+  }
+  
+  .favorites-list h2 {
+    text-align: center;
+    color: #333;
+  }
+  
+  .favorites-list ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .favorites-list li {
+    background-color: #fff;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .favorites-list button.remove-from-favorites {
+    background-color: #ff4c4c;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .favorites-list button.remove-from-favorites:hover {
+    background-color: #e63946;
+  }
+  
